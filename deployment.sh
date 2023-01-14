@@ -18,18 +18,18 @@ fi
 # enable yarn
 corepack enable || npm install --global yarn
 
-# Deploying CI/CD pipeline
-cd server/TenantPipeline/ || exit # stop execution if cd fails
-yarn install && yarn build
-# npm install && npm run build
-cdk bootstrap
+# # Deploying CI/CD pipeline
+# cd server/TenantPipeline/ || exit # stop execution if cd fails
+# yarn install && yarn build
+# # npm install && npm run build
+# cdk bootstrap
 
-if ! cdk deploy; then
-  exit 1
-fi
+# if ! cdk deploy; then
+#   exit 1
+# fi
 
-# Deploying bootstrap
-cd ../
+# # Deploying bootstrap
+# cd ../
 
 DEFAULT_SAM_S3_BUCKET=$(grep s3_bucket samconfig-bootstrap.toml | cut -d'=' -f2 | cut -d \" -f2)
 echo "aws s3 ls s3://${DEFAULT_SAM_S3_BUCKET}"
